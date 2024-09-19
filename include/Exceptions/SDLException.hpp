@@ -5,27 +5,40 @@ using namespace std;
 
 #ifndef _SDLEXCPETIONS_HPP_
 #define _SDLEXCEPTIONS_HPP_
-namespace SDL {
-    class WindowExcpetion : public exception {
-        public:
-            const string m_msg;
+namespace Plotbishtu {
+    namespace UI {
+        class WindowQuitException : public exception {
+            public:
+                const string m_msg;
 
-            WindowExcpetion(const string& msg);
+                WindowQuitException(const string& msg);
 
-            ~WindowExcpetion();
+                ~WindowQuitException();
 
-            virtual const char* what() const throw();
-    };
+                virtual const char* what() const throw(); 
+        };
 
-    class RendererException : public exception {
-        public:
-            const string m_msg;
+        class WindowExcpetion : public exception {
+            public:
+                const string m_msg;
 
-            RendererException(const string& msg);
+                WindowExcpetion(const string& msg);
 
-            ~RendererException();
+                ~WindowExcpetion();
 
-            virtual const char* what() const throw();
+                virtual const char* what() const throw();
+        };
+
+        class RendererException : public exception {
+            public:
+                const string m_msg;
+
+                RendererException(const string& msg);
+
+                ~RendererException();
+
+                virtual const char* what() const throw();
+        };
     }
 }
 

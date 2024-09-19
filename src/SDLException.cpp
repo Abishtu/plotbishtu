@@ -4,7 +4,21 @@
 #include <Exceptions/SDLException.hpp>
 
 using namespace std;
-using namespace SDL;
+using namespace Plotbishtu::UI;
+
+// Window Quit Exception
+
+WindowQuitException::WindowQuitException(const string& msg) : m_msg(msg) {
+    // ....
+}
+
+WindowQuitException::~WindowQuitException() {
+    // ....
+}
+
+const char* WindowQuitException::what() const throw() {
+    return m_msg.c_str();
+}
 
 // Window Exception
 

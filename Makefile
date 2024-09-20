@@ -1,4 +1,7 @@
 
+pull:
+	git pull
+
 configure:
 	cd build && cmake ../
 

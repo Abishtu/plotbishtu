@@ -16,7 +16,7 @@ vector<Point<double>> getPoints(double step) {
 	for (double x = -350.0; x <= 350.0; x = x + step) {
 		points.push_back({
 			x,
-			-(1/(x-10)) * 100
+			(1/(x-10)) * 100
 		});
 	}
 

@@ -83,7 +83,7 @@ void Application::drawPoints(vector<Point<double>> points)
     for (Point<double> point : points) {
         sdlPoints.push_back({ 
             ((float) point.x + (float)(this->width / 2)),
-            ((float) point.y + (float)(this->height / 2))
+            ((float) -point.y + (float)(this->height / 2))
         });
     }
 

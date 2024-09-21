@@ -49,7 +49,7 @@ namespace Plotbishtu {
 
         };
 
-        Point<double> *inputDataConversion(FILE *inputStream);
+        vector<Point<double>> inputDataConversion(FILE *inputStream);
     }
 }
 

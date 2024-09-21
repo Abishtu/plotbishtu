@@ -16,7 +16,7 @@ int main() {
 	Plotbishtu::UI::Application app = Plotbishtu::UI::Application("Testing", 800, 600);
 	
 	bool running = true;
-	vector<Point<double>> points 
+	vector<Point<double>> points = inputDataConversion(stdin);
 	while(running) {
 		try {
 			app.pollEvent();

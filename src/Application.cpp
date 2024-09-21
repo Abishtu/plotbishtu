@@ -94,21 +94,23 @@ void Application::drawPoints(vector<Point<double>> points)
     SDL_RenderPresent(this->renderer);
 }
 
-Point<double> *Plotbishtu::UI::inputDataConversion(FILE *inputStream) {
-    Point<double> *point = (Point<double>*) malloc(sizeof(Point<double>));
+vector<Point<double>> Plotbishtu::UI::inputDataConversion(FILE *inputStream) {
+    vector< Point<double> > points;
+    
     char *data = (char *) malloc(sizeof(char) * 1024);
 
-    if(fgets(data, 1024, inputStream) != NULL) {
+    while(fgets(data, 1024, inputStream) != NULL) {
         string dataString = string(data);
         size_t pos = dataString.find(',');
         double x = stod(dataString.substr(0, pos));
         double y = stod(dataString.substr(pos+1, dataString.length()));
-        point->x = x;
-        point->y = y;
-        cout << "(" << point->x << ", " << point->y << ")" << endl;
-        return point;
+        Point<double> point = {
+            x, y
+        };
+        points.push_back(point);
     }
+
     free(data);
 
-    return NULL;
+    return points;
 }

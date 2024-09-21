@@ -91,14 +91,24 @@ void Application::drawPoints(vector<Point<double>> points)
 
     SDL_RenderDrawLinesF(this->renderer, sdlPs, (int)sdlPoints.size());
 
-    // for (Point<double> point : points)
-    // {
-    //     float x = ((float) point.x + (float)(this->width / 2))/1;
-    //     float y = ((float) point.y + (float)(this->height / 2))/1;
-
-    //     SDL_RenderSetScale(this->renderer, 1, 1);
-    //     SDL_RenderDrawPointF(this->renderer, (float)x, (float)y);
-    // }
-
     SDL_RenderPresent(this->renderer);
+}
+
+Point<double> *Plotbishtu::UI::inputDataConversion(FILE *inputStream) {
+    Point<double> *point = (Point<double>*) malloc(sizeof(Point<double>));
+    char *data = (char *) malloc(sizeof(char) * 1024);
+
+    if(fgets(data, 1024, inputStream) != NULL) {
+        string dataString = string(data);
+        size_t pos = dataString.find(',');
+        double x = stod(dataString.substr(0, pos));
+        double y = stod(dataString.substr(pos+1, dataString.length()));
+        point->x = x;
+        point->y = y;
+        cout << "(" << point->x << ", " << point->y << ")" << endl;
+        return point;
+    }
+    free(data);
+
+    return NULL;
 }

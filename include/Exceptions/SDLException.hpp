@@ -40,6 +40,19 @@ namespace Plotbishtu {
                 virtual const char* what() const throw();
         };
     }
+
+    namespace PreProcessing {
+        class InputStreamParseException : public exception {
+            public:
+                const string m_msg;
+
+                InputStreamParseException(const string& msg);
+
+                ~InputStreamParseException();
+
+                virtual const char* what() const throw();
+        };
+    }
 }
 
 #endif

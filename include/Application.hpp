@@ -10,14 +10,16 @@ using namespace std;
 #ifndef _WINDOW_HPP_
 #define _WINDOW_HPP_
 
-template<typename T>
-struct Point {
-    T x;
-    T y;
-};
+
 
 namespace Plotbishtu {
     namespace UI {
+        template<typename T>
+        struct Point {
+            T x;
+            T y;
+        };
+
         class Application {
             private:
                 SDL_Window *window;
@@ -46,6 +48,8 @@ namespace Plotbishtu {
                 void drawPoints(vector<Point<double>> points);
 
         };
+
+        Point<double> *inputDataConversion(FILE *inputStream);
     }
 }
 

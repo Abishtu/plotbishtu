@@ -89,7 +89,7 @@ void Application::drawPoints(vector<Point<double>> points)
 
     const SDL_FPoint *sdlPs = &sdlPoints[0];
 
-    SDL_RenderDrawLinesF(this->renderer, sdlPs, (int)sdlPoints.size());
+    SDL_RenderDrawPointsF(this->renderer, sdlPs, (int)sdlPoints.size());
 
     SDL_RenderPresent(this->renderer);
 }

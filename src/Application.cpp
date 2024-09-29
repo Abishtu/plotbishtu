@@ -75,13 +75,10 @@ void Application::drawPoints(vector<Point<double>> points)
     SDL_RenderClear(this->renderer);
     SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
 
-    SDL_RenderDrawLine(this->renderer, this->width/2, 0, this->width/2, this->height);
-    SDL_RenderDrawLine(this->renderer, 0, this->height/2, this->width, this->height/2);
-
     vector<SDL_FPoint> sdlPoints = vector<SDL_FPoint>{};
 
     for (Point<double> point : points) {
-        sdlPoints.push_back({ 
+        sdlPoints.push_back({
             ((float) point.x + (float)(this->width / 2)),
             ((float) -point.y + (float)(this->height / 2))
         });
@@ -96,7 +93,7 @@ void Application::drawPoints(vector<Point<double>> points)
 
 vector<Point<double>> Plotbishtu::UI::inputDataConversion(FILE *inputStream) {
     vector< Point<double> > points;
-    
+
     char *data = (char *) malloc(sizeof(char) * 1024);
 
     while(fgets(data, 1024, inputStream) != NULL) {

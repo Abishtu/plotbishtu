@@ -11,10 +11,12 @@
 using namespace std;
 using namespace Plotbishtu::UI;
 
+
+
 int main() {
 
 	Plotbishtu::UI::Application app = Plotbishtu::UI::Application("Testing", 800, 600);
-	
+
 	bool running = true;
 	vector<Point<double>> points = inputDataConversion(stdin);
 	while(running) {
@@ -22,9 +24,11 @@ int main() {
 			app.pollEvent();
 			app.eventChecks();
 
-			app.drawPoints(points);
-			
+			if(!points.empty()) {
+				app.drawPoints(points);
+			}
 
+			points.clear();
 		} catch (const Plotbishtu::UI::WindowQuitException& exp) {
 			cout << exp.what() << endl;
 			running = false;

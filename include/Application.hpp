@@ -46,7 +46,6 @@ namespace Plotbishtu {
                 void eventChecks();
 
                 void drawPoints(vector<Point<double>> points);
-
         };
 
         vector<Point<double>> inputDataConversion(FILE *inputStream);

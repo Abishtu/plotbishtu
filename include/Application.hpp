@@ -20,6 +20,12 @@ namespace Plotbishtu {
             T y;
         };
 
+        template<typename Y>
+        struct Line {
+            Point<Y> start;
+            Point<Y> end;
+        };
+
         class Application {
             private:
                 SDL_Window *window;
@@ -45,7 +51,14 @@ namespace Plotbishtu {
                 void pollEvent();
                 void eventChecks();
 
+                void renderingWindowUp();
+
                 void drawPoints(vector<Point<double>> points);
+                void drawLines(vector<Line<double>> lines);
+
+                void drawPoint(Point<double> point);
+                void drawLine(Line<double> line);
+
         };
 
         vector<Point<double>> inputDataConversion(FILE *inputStream);

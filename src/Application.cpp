@@ -19,6 +19,7 @@ Application::Application(string _name, int _width, int _height)
 
 Application::~Application()
 {
+    SDL_RenderClear(this->renderer);
     SDL_DestroyRenderer(this->renderer);
     SDL_DestroyWindow(this->window);
     SDL_Quit();
@@ -86,10 +87,76 @@ void Application::drawPoints(vector<Point<double>> points)
 
     const SDL_FPoint *sdlPs = &sdlPoints[0];
 
-    SDL_RenderDrawPointsF(this->renderer, sdlPs, (int)sdlPoints.size());
+    SDL_RenderDrawLinesF(this->renderer, sdlPs, (int)sdlPoints.size());
 
     SDL_RenderPresent(this->renderer);
+    SDL_RenderClear(this->renderer);
 }
+
+void Application::drawLines(vector<Line<double>> lines)
+{
+    SDL_SetRenderDrawColor(this->renderer, 242, 242, 242, 255);
+    SDL_RenderClear(this->renderer);
+    SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
+
+    vector<SDL_FPoint> sdlPoints = vector<SDL_FPoint>{};
+
+    for (Line<double> line : lines) {
+        sdlPoints.push_back({
+            ((float) line.start.x + (float)(this->width / 2)),
+            ((float) -line.start.y + (float)(this->height / 2))
+        });
+
+        sdlPoints.push_back({
+            ((float) line.end.x + (float)(this->width / 2)),
+            ((float) -line.end.y + (float)(this->height / 2))
+        });
+    }
+
+    const SDL_FPoint *sdlPs = &sdlPoints[0];
+    
+    SDL_RenderDrawLinesF(this->renderer, sdlPs, (int)sdlPoints.size());
+
+    SDL_RenderPresent(this->renderer);
+    SDL_RenderClear(this->renderer);
+}
+
+
+void Application::renderingWindowUp() {
+    SDL_SetRenderDrawColor(this->renderer, 242, 242, 242, 255);
+    SDL_RenderClear(this->renderer);
+    SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
+}
+
+void Application::drawPoint(Point<double> point) {
+
+    SDL_RenderDrawPointF(
+        this->renderer, 
+        ((float) point.x + (float)(this->width / 2)),
+        ((float) -point.y + (float)(this->height / 2))
+    );
+
+    SDL_RenderPresent(this->renderer);
+    SDL_RenderClear(this->renderer);
+}
+
+void Application::drawLine(Line<double> line) {
+    float x1 = ((float) line.start.x + (float)(this->width / 2));
+    float y1 = ((float) -line.start.y + (float)(this->height / 2));
+
+    float x2 = ((float) line.end.x + (float)(this->width / 2));
+    float y2 = ((float) -line.end.y + (float)(this->height / 2));
+
+    SDL_RenderDrawLineF(
+        this->renderer,
+        x1, y1, x2, y2
+    );
+
+    SDL_RenderPresent(this->renderer);
+    SDL_RenderClear(this->renderer);
+
+}
+
 
 vector<Point<double>> Plotbishtu::UI::inputDataConversion(FILE *inputStream) {
     vector< Point<double> > points;
